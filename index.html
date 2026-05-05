@@ -6,8 +6,8 @@
     <title>HydroSense - Smart Monitoring Water Filter</title>
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <!-- Font Poppins (Modern/Clean) & Playfair Display (Aesthetic/Premium) -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Poppins (Full) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome untuk Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -18,6 +18,7 @@
             --primary-blue: #0077B6; 
             --bg-body: #FFFFFF;
             --bg-card: linear-gradient(180deg, #FFFFFF 0%, #E8F0F6 100%); 
+            --bg-section: #F8FAFC;
             --text-dark: #1E293B;
             --text-gray: #64748B;
             --text-light: #FFFFFF;
@@ -25,7 +26,6 @@
             
             /* Font Variables */
             --font-main: 'Poppins', sans-serif;
-            --font-aesthetic: 'Playfair Display', serif;
         }
 
         * {
@@ -68,8 +68,7 @@
         }
 
         .navbar .logo .brand-name {
-            font-family: var(--font-aesthetic);
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-dark);
             letter-spacing: 0.5px;
@@ -121,11 +120,11 @@
         .hero-content { flex: 1; max-width: 600px; }
         .hero-content h3 { font-weight: 400; font-size: 1.1rem; margin-bottom: 15px; letter-spacing: 0.5px; }
         .hero-content h1 { 
-            font-family: var(--font-aesthetic); /* Menggunakan font estetik */
             font-size: 3.5rem; 
             line-height: 1.2; 
             margin-bottom: 35px; 
             font-weight: 700; 
+            letter-spacing: -1px;
         }
 
         .hero-buttons { display: flex; gap: 15px; }
@@ -149,7 +148,7 @@
         .hero-image { flex: 1; display: flex; justify-content: center; }
         .hero-image img {
             width: 100%;
-            max-width: 400px; /* Dikecilkan sesuai instruksi */
+            max-width: 400px; 
             height: auto;
             object-fit: contain;
         }
@@ -159,13 +158,13 @@
         
         .section-title { margin-bottom: 50px; }
         .section-title h2 { 
-            font-family: var(--font-aesthetic); /* Menggunakan font estetik */
-            font-size: 2.8rem; 
+            font-size: 2.5rem; 
             color: var(--primary-dark); 
             position: relative; 
             display: inline-block; 
             margin-bottom: 20px; 
             font-weight: 700; 
+            letter-spacing: -0.5px;
         }
         .section-title h2::after {
             content: ''; position: absolute; bottom: -8px; left: 20%; width: 60%; height: 4px; background-color: var(--primary-blue); border-radius: 2px;
@@ -191,16 +190,24 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .product-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
 
-        .product-card img { 
+        .clickable-product {
             width: 100%; 
             height: 280px; 
-            object-fit: cover; 
+            object-fit: contain; /* Diganti ke contain agar gambar HP + Filter terlihat utuh */
             border-radius: 20px; 
             margin-bottom: 25px; 
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            background-color: #F8FAFC;
+            padding: 10px;
+        }
+        .clickable-product:hover {
+            transform: scale(1.05);
         }
 
         .card-info { flex: 1; display: flex; flex-direction: column; padding: 0 5px; }
@@ -209,7 +216,15 @@
         .price-row h3 { color: var(--primary-dark); font-size: 1.4rem; font-weight: 700; }
         .price-row .price { font-weight: 600; font-size: 1.2rem; color: var(--primary-dark); }
         
-        .product-card p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 25px; flex: 1; }
+        .product-card p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 15px; flex: 1; }
+
+        .click-hint {
+            font-size: 0.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            display: block;
+            font-weight: 500;
+        }
 
         .btn-cart {
             width: 100%;
@@ -221,6 +236,87 @@
             font-weight: 600;
         }
         .btn-cart:hover { background-color: var(--primary-blue); }
+
+        /* --- New Section: Features / Technology --- */
+        .features-section {
+            background-color: var(--bg-section);
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        .feature-box {
+            background: #FFFFFF;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transition: 0.3s;
+        }
+        .feature-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(0, 119, 182, 0.1);
+            color: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+
+        .feature-box h3 { color: var(--primary-dark); margin-bottom: 15px; font-weight: 600; }
+        .feature-box p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
+
+        /* --- Modal untuk Detail Produk --- */
+        .product-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1001;
+            opacity: 0; visibility: hidden;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .product-modal-overlay.active { opacity: 1; visibility: visible; }
+
+        .product-modal {
+            background: #fff;
+            width: 100%; max-width: 500px;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            transform: translateY(20px);
+            transition: 0.3s;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .product-modal-overlay.active .product-modal { transform: translateY(0); }
+
+        .close-modal {
+            position: absolute; top: 20px; right: 20px;
+            font-size: 1.5rem; color: var(--text-gray);
+            cursor: pointer; transition: 0.3s;
+        }
+        .close-modal:hover { color: #E11D48; }
+
+        .modal-title { font-size: 1.8rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; border-bottom: 2px solid var(--primary-blue); padding-bottom: 10px; display: inline-block; }
+        .modal-body { color: var(--text-gray); line-height: 1.6; margin-top: 15px; }
+        .modal-body ul { list-style: none; padding-left: 0; margin-top: 15px; }
+        .modal-body ul li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; }
+        .modal-body ul li i { color: #10B981; margin-top: 4px; } /* Warna hijau check */
 
         /* --- Cart Modal (Side Drawer) --- */
         .cart-overlay {
@@ -257,7 +353,7 @@
             padding-bottom: 15px;
             border-bottom: 1px solid #E2E8F0;
         }
-        .cart-header h2 { font-family: var(--font-aesthetic); color: var(--primary-dark); }
+        .cart-header h2 { font-weight: 700; color: var(--primary-dark); }
         .close-cart { font-size: 1.5rem; cursor: pointer; color: var(--text-gray); }
         
         .cart-items { flex: 1; overflow-y: auto; margin-bottom: 20px; }
@@ -291,11 +387,11 @@
         }
 
         .footer-brand { display: flex; flex-direction: column; gap: 15px; }
-        .footer-brand h2 { font-family: var(--font-aesthetic); font-size: 2rem; }
+        .footer-brand h2 { font-size: 1.8rem; font-weight: 700; }
         .footer-brand p { color: #94A3B8; font-size: 0.9rem; line-height: 1.6; }
 
         .footer-contact h3, .footer-social h3 { 
-            font-family: var(--font-main); font-weight: 600; font-size: 1.1rem; margin-bottom: 20px; position: relative;
+            font-weight: 600; font-size: 1.1rem; margin-bottom: 20px; position: relative;
         }
         .footer-contact p { margin-bottom: 12px; color: #E2E8F0; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
         .footer-contact i { color: var(--icon-yellow); width: 20px; }
@@ -322,7 +418,7 @@
             .social-icons-footer { justify-content: center; }
         }
         @media (max-width: 768px) {
-            .nav-links a:not(.cart-icon-wrapper) { display: none; } /* Hide menu text but keep cart */
+            .nav-links a:not(.cart-icon-wrapper) { display: none; } 
             .product-grid { grid-template-columns: 1fr; max-width: 400px; }
         }
     </style>
@@ -338,7 +434,8 @@
         </a>
         <div class="nav-links">
             <a href="#">Home</a>
-            <a href="#products">Our Products</a>
+            <a href="#products">Produk</a>
+            <a href="#features">Teknologi</a>
             <!-- Ikon Keranjang -->
             <div class="cart-icon-wrapper" onclick="toggleCart()">
                 <i class="fas fa-shopping-cart"></i>
@@ -354,7 +451,7 @@
             <h1>Air rumah terlihat bersih, tapi<br>belum tentu aman.</h1>
             <div class="hero-buttons">
                 <a href="#products" class="btn btn-primary">Shop Now</a>
-                <a href="#products" class="btn btn-outline">Discover Hydrosense</a>
+                <a href="#features" class="btn btn-outline">Discover Hydrosense</a>
             </div>
         </div>
         <div class="hero-image">
@@ -367,50 +464,76 @@
     <section class="products-section" id="products">
         <div class="section-title">
             <h2>Our Products</h2>
-            <p>Hydrosense menyediakan beberapa jenis Smart water<br>Filter yang dapat disesuaikan dengan kebutuhan rumah tangga anda</p>
+            <p>Hydrosense menyediakan beberapa jenis Smart water<br>Filter yang dapat disesuaikan dengan kebutuhan rumah tangga anda.</p>
         </div>
 
         <div class="product-grid">
-            <!-- Card 1 -->
+            <!-- Card 1: BASIC -->
             <div class="product-card">
-                <!-- 3. Aset Produk -->
-                <img src="filter-basic.jpg" alt="Filter Basic">
+                <!-- Gambar clickable yang memanggil modal details -->
+                <img src="hero-products-placeholder.png" alt="Filter Basic" class="clickable-product" onclick="showProductDetails('BASIC')">
                 <div class="card-info">
                     <div class="price-row">
                         <h3>BASIC</h3>
                         <span class="price">Rp 3.000.000</span>
                     </div>
                     <p>Smart monitoring water filter</p>
+                    <span class="click-hint"><i class="fas fa-hand-pointer"></i> Klik gambar untuk detail spesifikasi</span>
                     <button class="btn btn-cart" onclick="addToCart('BASIC', 3000000)">Add to cart</button>
                 </div>
             </div>
 
-            <!-- Card 2 -->
+            <!-- Card 2: PRO -->
             <div class="product-card">
-                <!-- 3. Aset Produk -->
-                <img src="filter-pro.jpg" alt="Filter Pro">
+                <img src="hero-products-placeholder.png" alt="Filter Pro" class="clickable-product" onclick="showProductDetails('PRO')">
                 <div class="card-info">
                     <div class="price-row">
                         <h3>PRO</h3>
                         <span class="price">Rp 5.500.000</span>
                     </div>
                     <p>Smart monitoring water filter</p>
+                    <span class="click-hint"><i class="fas fa-hand-pointer"></i> Klik gambar untuk detail spesifikasi</span>
                     <button class="btn btn-cart" onclick="addToCart('PRO', 5500000)">Add to cart</button>
                 </div>
             </div>
 
-            <!-- Card 3 -->
+            <!-- Card 3: ULTRA -->
             <div class="product-card">
-                <!-- 3. Aset Produk -->
-                <img src="filter-ultra.jpg" alt="Filter Ultra">
+                <img src="hero-products-placeholder.png" alt="Filter Ultra" class="clickable-product" onclick="showProductDetails('ULTRA')">
                 <div class="card-info">
                     <div class="price-row">
                         <h3>ULTRA</h3>
                         <span class="price">Rp 6.000.000</span>
                     </div>
                     <p>Smart monitoring water filter</p>
+                    <span class="click-hint"><i class="fas fa-hand-pointer"></i> Klik gambar untuk detail spesifikasi</span>
                     <button class="btn btn-cart" onclick="addToCart('ULTRA', 6000000)">Add to cart</button>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section: Fitur / Teknologi (Biar Lebih Rame) -->
+    <section class="features-section" id="features">
+        <div class="section-title">
+            <h2>Teknologi HydroSense</h2>
+            <p>Sistem filtrasi cerdas berbasis Internet of Things (IoT) yang menjamin kualitas air untuk keluarga Anda secara presisi.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Notifikasi WhatsApp</h3>
+                <p>Mendapatkan notifikasi otomatis ke WhatsApp Anda saat media filter sudah penuh atau waktunya diganti.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Real-time Monitoring</h3>
+                <p>Mendeteksi tingkat kejernihan (TDS) dan pH air secara *real-time* langsung dari sensor IoT cerdas.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Multi-Stage Filtration</h3>
+                <p>Menyaring kotoran, bakteri, hingga logam berat secara berlapis sehingga air terjamin aman dikonsumsi dan digunakan.</p>
             </div>
         </div>
     </section>
@@ -442,6 +565,17 @@
         </div>
     </footer>
 
+    <!-- Komponen Modal Detail Produk -->
+    <div class="product-modal-overlay" id="product-modal-overlay" onclick="closeModal(event)">
+        <div class="product-modal" id="product-modal">
+            <span class="close-modal" onclick="closeModal(event)"><i class="fas fa-times"></i></span>
+            <div class="modal-title" id="modal-title">Detail Produk</div>
+            <div class="modal-body" id="modal-body">
+                <!-- Konten akan diisi oleh JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <!-- Komponen Cart Drawer / Modal -->
     <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
     <div class="cart-drawer" id="cart-drawer">
@@ -463,32 +597,76 @@
 
     <!-- Script Fungsionalitas -->
     <script>
-        // State Management Keranjang
+        // --- Data Perbedaan Spesifikasi Produk ---
+        const productSpecs = {
+            'BASIC': `
+                <p>Pilihan tepat untuk penyaringan dasar sehari-hari dengan integrasi notifikasi standar.</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 3-Stage Filtration (Menyaring sedimen, klorin, bau)</li>
+                    <li><i class="fas fa-check-circle"></i> Notifikasi Ganti Filter via WhatsApp</li>
+                    <li><i class="fas fa-check-circle"></i> Indikator Umur Filter LED</li>
+                    <li><i class="fas fa-check-circle"></i> Garansi Unit 1 Tahun</li>
+                </ul>
+            `,
+            'PRO': `
+                <p>Perlindungan ekstra dengan sensor air digital. Sangat cocok untuk keluarga yang mengutamakan kesehatan.</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>5-Stage Filtration (Termasuk penyaringan logam berat)</strong></li>
+                    <li><i class="fas fa-check-circle"></i> Notifikasi WhatsApp & Akses Aplikasi Mobile</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Sensor TDS & pH Air Real-time</strong></li>
+                    <li><i class="fas fa-check-circle"></i> Garansi Unit 2 Tahun</li>
+                </ul>
+            `,
+            'ULTRA': `
+                <p>Sistem filtrasi ultimate dan pintar. Menyediakan kemurnian air tertinggi dengan fitur IoT terlengkap.</p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>7-Stage Filtration + Lampu Sinar UV (Membunuh bakteri/virus)</strong></li>
+                    <li><i class="fas fa-check-circle"></i> Dashboard Analitik Penggunaan Air Bulanan</li>
+                    <li><i class="fas fa-check-circle"></i> Sensor TDS, pH, dan Suhu Real-time</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>AI Predictive Maintenance (Prediksi kapan kotor/rusak)</strong></li>
+                    <li><i class="fas fa-check-circle"></i> Garansi Unit 3 Tahun Prioritas</li>
+                </ul>
+            `
+        };
+
+        // --- Fungsi Buka/Tutup Modal Produk ---
+        function showProductDetails(type) {
+            const overlay = document.getElementById('product-modal-overlay');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+
+            title.textContent = `HydroSense ${type}`;
+            body.innerHTML = productSpecs[type];
+
+            overlay.classList.add('active');
+        }
+
+        function closeModal(event) {
+            // Cegah agar modal tidak tertutup jika diklik di bagian putihnya
+            if(event.target.id === 'product-modal-overlay' || event.target.closest('.close-modal')) {
+                document.getElementById('product-modal-overlay').classList.remove('active');
+            }
+        }
+
+        // --- State Management Keranjang ---
         let cart = [];
 
-        // Format angka ke format Rupiah
         function formatRupiah(angka) {
             return new Intl.NumberFormat('id-ID').format(angka);
         }
 
-        // Fungsi Tambah ke Keranjang
         function addToCart(name, price) {
             cart.push({ id: Date.now(), name, price });
             updateCartUI();
-            
-            // Tampilkan Toast/Notifikasi sukses
-            showToast(`${name} berhasil ditambahkan!`);
+            showToast(`HydroSense ${name} masuk ke keranjang!`);
         }
 
-        // Fungsi Hapus dari Keranjang
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
             updateCartUI();
         }
 
-        // Fungsi Memperbarui Tampilan Keranjang
         function updateCartUI() {
-            // Update Badge Count
             document.getElementById('cart-count').textContent = cart.length;
 
             const container = document.getElementById('cart-items-container');
@@ -500,7 +678,6 @@
                 return;
             }
 
-            // Render Item Keranjang
             container.innerHTML = '';
             let total = 0;
 
@@ -521,15 +698,11 @@
             totalPriceEl.textContent = `Rp ${formatRupiah(total)}`;
         }
 
-        // Fungsi Toggle Drawer Keranjang
         function toggleCart() {
-            const drawer = document.getElementById('cart-drawer');
-            const overlay = document.getElementById('cart-overlay');
-            drawer.classList.toggle('active');
-            overlay.classList.toggle('active');
+            document.getElementById('cart-drawer').classList.toggle('active');
+            document.getElementById('cart-overlay').classList.toggle('active');
         }
 
-        // Fungsi Checkout Sederhana
         function checkout() {
             if (cart.length === 0) {
                 showToast("Keranjang kosong! Silakan pilih produk terlebih dahulu.");
@@ -538,7 +711,7 @@
             alert("Terima kasih! Fitur pembayaran akan segera tersedia. Total tagihan: Rp " + formatRupiah(cart.reduce((a,b) => a+b.price, 0)));
         }
 
-        // Sistem Toast Notifikasi
+        // --- Sistem Toast Notifikasi ---
         function showToast(message) {
             const toast = document.createElement('div');
             toast.innerHTML = `<i class="fas fa-check-circle" style="margin-right:8px; color:#10B981;"></i> ${message}`;
@@ -564,7 +737,7 @@
             }, 3000);
         }
 
-        // Smooth Scrolling
+        // --- Smooth Scrolling ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
