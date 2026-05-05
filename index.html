@@ -3,103 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HydroSense - Smart Monitoring Water Filter</title>
+    <title>HydroSense | Intelligent Water Flow</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Menggunakan Font Awesome untuk Icon (Opsional, bisa diganti SVG manual) -->
+    <!-- Google Fonts: Inter untuk kesan Tech/Premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="contact-info">
-            <span><i class="fas fa-phone-alt"></i> (+62) 81230458233</span>
-            <span><i class="fas fa-envelope"></i> hydrosense.id@gmail.com</span>
-        </div>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-x-twitter"></i></a>
+    <!-- Utility Top Bar (Elevated) -->
+    <div class="utility-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span><i class="fas fa-phone-alt"></i> (+62) 81230458233</span>
+                <span class="separator">|</span>
+                <span><i class="fas fa-envelope"></i> hydrosense.id@gmail.com</span>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-x-twitter"></i></a>
+            </div>
         </div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <!-- Ganti dengan aset logomu -->
-            <img src="logo-placeholder.png" alt="HydroSense Logo" style="height: 40px;">
-        </div>
-        <div class="nav-links">
-            <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
-            <a href="#">Home</a>
-            <a href="#">Our Products</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-content">
-            <h3>Smart Monitoring Water Filter - Hydrosense</h3>
-            <h1>Air rumah terlihat bersih, tapi<br>belum tentu aman.</h1>
-            <div class="hero-buttons">
-                <a href="#" class="btn btn-primary">Shop Now</a>
-                <a href="#" class="btn btn-outline">Discover Hydrosense</a>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <!-- Ganti dengan logo PNG transparan kamu -->
+                <img src="logo-hydrosense.png" alt="HydroSense">
             </div>
-        </div>
-        <div class="hero-image">
-            <!-- Ganti dengan render 3D dan mockup HP kamu -->
-            <img src="hero-products-placeholder.png" alt="HydroSense Devices">
+            <nav class="main-nav">
+                <a href="#home" class="nav-item">Home</a>
+                <a href="#products" class="nav-item">Our Products</a>
+                <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+            </nav>
         </div>
     </header>
 
-    <!-- Products Section -->
-    <section class="products-section">
-        <div class="section-title">
-            <h2>Our Products</h2>
-            <p>Hydrosense menyediakan beberapa jenis Smart water<br>Filter yang dapat disesuaikan dengan kebutuhan rumah tangga anda</p>
+    <!-- Hero Section (The Flow View) -->
+    <section id="home" class="hero-flow">
+        <div class="container">
+            <div class="hero-text">
+                <span class="sub-badge">Smart Monitoring Water Filter</span>
+                <h1 class="headline">Air rumah terlihat bersih,<br> tapi <span class="highlight">belum tentu aman.</span></h1>
+                <div class="hero-actions">
+                    <a href="#products" class="btn btn-primary">Shop Now</a>
+                    <a href="#" class="btn btn-link">Discover Technology <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- Gambar unit filter dan HP jadi satu layer -->
+                <img src="hero-composite-placeholder.png" alt="HydroSense Systems" class="layered-image">
+                <div class="glow-effect"></div>
+            </div>
         </div>
+        <div class="fluid-divider"></div>
+    </section>
 
-        <div class="product-grid">
-            <!-- Card 1 -->
-            <div class="product-card">
-                <img src="filter-basic.jpg" alt="Basic Filter">
-                <div class="card-info">
-                    <div class="price-row">
-                        <h3>BASIC</h3>
-                        <span class="price">Rp. 3.000.000</span>
-                    </div>
-                    <p>Smart monitoring water filter</p>
-                    <button class="btn btn-cart">Add to cart</button>
-                </div>
+    <!-- Our Products Section (Glassmorphism Grid) -->
+    <section id="products" class="products-grid-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+                <div class="title-line"></div>
+                <p>Hydrosense menyediakan beberapa jenis Smart water Filter yang dapat<br> disesuaikan dengan kebutuhan rumah tangga anda</p>
             </div>
 
-            <!-- Card 2 -->
-            <div class="product-card">
-                <img src="filter-pro.jpg" alt="Pro Filter">
-                <div class="card-info">
-                    <div class="price-row">
-                        <h3>PRO</h3>
-                        <span class="price">Rp. 5.500.000</span>
+            <div class="product-cards-container">
+                <!-- Card 1 (BASIC) -->
+                <div class="product-glass-card">
+                    <div class="card-image-wrap">
+                        <img src="filter-basic.png" alt="Basic Filter">
                     </div>
-                    <p>Smart monitoring water filter</p>
-                    <button class="btn btn-cart">Add to cart</button>
+                    <div class="card-body">
+                        <div class="card-header-row">
+                            <h3>BASIC</h3>
+                            <span class="price-tag">Rp. 3.000.000</span>
+                        </div>
+                        <p class="desc">Essential smart monitoring for clean water assurance.</p>
+                        <button class="btn btn-add-cart">Add to cart <i class="fas fa-shopping-cart"></i></button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Card 3 -->
-            <div class="product-card">
-                <img src="filter-ultra.jpg" alt="Ultra Filter">
-                <div class="card-info">
-                    <div class="price-row">
-                        <h3>ULTRA</h3>
-                        <span class="price">Rp. 6.000.000</span>
+                <!-- Card 2 (PRO) - Highlighted -->
+                <div class="product-glass-card featured">
+                    <div class="card-image-wrap">
+                        <img src="filter-pro.png" alt="Pro Filter">
                     </div>
-                    <p>Smart monitoring water filter</p>
-                    <button class="btn btn-cart">Add to cart</button>
+                    <div class="card-body">
+                        <div class="card-header-row">
+                            <h3>PRO</h3>
+                            <span class="price-tag">Rp. 5.500.000</span>
+                        </div>
+                        <p class="desc">Advanced filtration with enhanced data analytics.</p>
+                        <button class="btn btn-add-cart">Add to cart <i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                    <div class="featured-badge">Best Value</div>
+                </div>
+
+                <!-- Card 3 (ULTRA) -->
+                <div class="product-glass-card">
+                    <div class="card-image-wrap">
+                        <img src="filter-ultra.png" alt="Ultra Filter">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-header-row">
+                            <h3>ULTRA</h3>
+                            <span class="price-tag">Rp. 6.000.000</span>
+                        </div>
+                        <p class="desc">Maximum purity with premium smart features.</p>
+                        <button class="btn btn-add-cart">Add to cart <i class="fas fa-shopping-cart"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Modern Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2024 HydroSense. Intelligent Water Systems.</p>
+            <div class="footer-meta">
+                <span>(+62) 81230458233</span>
+                <span class="separator">|</span>
+                <span>hydrosense.id@gmail.com</span>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
