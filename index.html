@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HydroSense - Smart Monitoring Water Filter</title>
-    <!-- Font Poppins agar mirip dengan desain asli -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Font Poppins (Modern/Clean) & Playfair Display (Aesthetic/Premium) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome untuk Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -20,13 +22,17 @@
             --text-gray: #64748B;
             --text-light: #FFFFFF;
             --icon-yellow: #FACC15;
+            
+            /* Font Variables */
+            --font-main: 'Poppins', sans-serif;
+            --font-aesthetic: 'Playfair Display', serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-main);
         }
 
         body {
@@ -35,50 +41,73 @@
             overflow-x: hidden;
         }
 
-        /* --- Top Bar --- */
-        .top-bar {
-            background-color: var(--primary-dark);
-            color: var(--text-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 5%;
-            font-size: 0.85rem;
-        }
-
-        .top-bar .contact-info { display: flex; gap: 20px; }
-        .top-bar .contact-info i { color: var(--icon-yellow); margin-right: 8px; }
-        .top-bar .social-icons a { color: var(--text-light); margin-left: 15px; text-decoration: none; transition: 0.3s; }
-        .top-bar .social-icons a:hover { color: var(--primary-blue); }
-
         /* --- Navbar --- */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
+            padding: 15px 5%;
             background-color: #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
         .navbar .logo img {
-            height: 40px; /* Sesuaikan tinggi logo */
+            height: 40px; 
             width: auto;
             display: block;
+        }
+
+        .navbar .logo .brand-name {
+            font-family: var(--font-aesthetic);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            letter-spacing: 0.5px;
         }
 
         .nav-links { display: flex; align-items: center; gap: 30px; }
         .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary-blue); }
-        .nav-links .search-icon { font-size: 1.2rem; }
+        
+        /* Ikon Keranjang di Header */
+        .cart-icon-wrapper {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            transition: 0.3s;
+        }
+        .cart-icon-wrapper:hover { color: var(--primary-blue); }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: #E11D48;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            height: 18px;
+            min-width: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 4px;
+        }
 
         /* --- Hero Section --- */
         .hero {
-            /* Memanggil water-bg.jpg sebagai background dengan gradient overlay */
-            background: linear-gradient(rgba(10, 25, 47, 0.6), rgba(10, 25, 47, 0.6)), url('water-bg.jpg') center/cover no-repeat; 
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.6)), url('water-bg.jpg') center/cover no-repeat; 
             border-radius: 0 0 50px 50px;
             padding: 80px 5%;
             display: flex;
@@ -91,7 +120,13 @@
 
         .hero-content { flex: 1; max-width: 600px; }
         .hero-content h3 { font-weight: 400; font-size: 1.1rem; margin-bottom: 15px; letter-spacing: 0.5px; }
-        .hero-content h1 { font-size: 3rem; line-height: 1.2; margin-bottom: 35px; font-weight: 600; }
+        .hero-content h1 { 
+            font-family: var(--font-aesthetic); /* Menggunakan font estetik */
+            font-size: 3.5rem; 
+            line-height: 1.2; 
+            margin-bottom: 35px; 
+            font-weight: 700; 
+        }
 
         .hero-buttons { display: flex; gap: 15px; }
         .btn {
@@ -114,7 +149,7 @@
         .hero-image { flex: 1; display: flex; justify-content: center; }
         .hero-image img {
             width: 100%;
-            max-width: 550px;
+            max-width: 400px; /* Dikecilkan sesuai instruksi */
             height: auto;
             object-fit: contain;
         }
@@ -123,7 +158,15 @@
         .products-section { padding: 40px 5% 80px; text-align: center; }
         
         .section-title { margin-bottom: 50px; }
-        .section-title h2 { font-size: 2.2rem; color: var(--primary-dark); position: relative; display: inline-block; margin-bottom: 20px; font-weight: 700; }
+        .section-title h2 { 
+            font-family: var(--font-aesthetic); /* Menggunakan font estetik */
+            font-size: 2.8rem; 
+            color: var(--primary-dark); 
+            position: relative; 
+            display: inline-block; 
+            margin-bottom: 20px; 
+            font-weight: 700; 
+        }
         .section-title h2::after {
             content: ''; position: absolute; bottom: -8px; left: 20%; width: 60%; height: 4px; background-color: var(--primary-blue); border-radius: 2px;
         }
@@ -154,8 +197,8 @@
 
         .product-card img { 
             width: 100%; 
-            height: 280px; /* Tinggi disamakan agar rapi */
-            object-fit: cover; /* Menghindari gambar gepeng */
+            height: 280px; 
+            object-fit: cover; 
             border-radius: 20px; 
             margin-bottom: 25px; 
         }
@@ -179,53 +222,128 @@
         }
         .btn-cart:hover { background-color: var(--primary-blue); }
 
+        /* --- Cart Modal (Side Drawer) --- */
+        .cart-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+        .cart-overlay.active { opacity: 1; visibility: visible; }
+        
+        .cart-drawer {
+            position: fixed;
+            top: 0; right: -400px;
+            width: 100%; max-width: 400px;
+            height: 100%;
+            background: #fff;
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+        }
+        .cart-drawer.active { right: 0; }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .cart-header h2 { font-family: var(--font-aesthetic); color: var(--primary-dark); }
+        .close-cart { font-size: 1.5rem; cursor: pointer; color: var(--text-gray); }
+        
+        .cart-items { flex: 1; overflow-y: auto; margin-bottom: 20px; }
+        .cart-item {
+            display: flex; justify-content: space-between; align-items: center;
+            background: #F8FAFC; padding: 15px; border-radius: 10px; margin-bottom: 10px;
+        }
+        .cart-item h4 { font-size: 1rem; color: var(--primary-dark); }
+        .cart-item p { font-size: 0.9rem; color: var(--primary-blue); font-weight: 600; margin-top: 5px; }
+        .remove-item { color: #E11D48; cursor: pointer; background: none; border: none; font-size: 1rem; }
+
+        .cart-footer { padding-top: 20px; border-top: 1px solid #E2E8F0; }
+        .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 20px; }
+        
+        .empty-cart-msg { text-align: center; color: var(--text-gray); margin-top: 50px; font-style: italic; }
+
         /* --- Footer --- */
         footer {
             background-color: var(--primary-dark);
             color: var(--text-light);
-            text-align: center;
-            padding: 25px 5%;
-            font-size: 0.9rem;
+            padding: 50px 5% 30px;
         }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+            text-align: left;
+        }
+
+        .footer-brand { display: flex; flex-direction: column; gap: 15px; }
+        .footer-brand h2 { font-family: var(--font-aesthetic); font-size: 2rem; }
+        .footer-brand p { color: #94A3B8; font-size: 0.9rem; line-height: 1.6; }
+
+        .footer-contact h3, .footer-social h3 { 
+            font-family: var(--font-main); font-weight: 600; font-size: 1.1rem; margin-bottom: 20px; position: relative;
+        }
+        .footer-contact p { margin-bottom: 12px; color: #E2E8F0; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .footer-contact i { color: var(--icon-yellow); width: 20px; }
+
+        .social-icons-footer { display: flex; gap: 15px; }
+        .social-icons-footer a {
+            display: inline-flex; justify-content: center; align-items: center;
+            width: 40px; height: 40px; border-radius: 50%;
+            background-color: rgba(255,255,255,0.1); color: white;
+            text-decoration: none; transition: 0.3s;
+        }
+        .social-icons-footer a:hover { background-color: var(--primary-blue); transform: translateY(-3px); }
+
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: #94A3B8; font-size: 0.85rem; }
 
         /* --- Responsive --- */
         @media (max-width: 992px) {
             .hero { flex-direction: column; text-align: center; padding: 60px 5%; }
-            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content h1 { font-size: 2.8rem; }
             .hero-buttons { justify-content: center; margin-bottom: 40px; }
-            .top-bar { flex-direction: column; gap: 10px; }
+            .hero-image img { max-width: 300px; }
+            .footer-content { text-align: center; }
+            .footer-contact p { justify-content: center; }
+            .social-icons-footer { justify-content: center; }
         }
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Sembunyikan menu di mobile sementara */
+            .nav-links a:not(.cart-icon-wrapper) { display: none; } /* Hide menu text but keep cart */
             .product-grid { grid-template-columns: 1fr; max-width: 400px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="contact-info">
-            <span><i class="fas fa-phone-alt"></i> (+62) 81230458233</span>
-            <span><i class="fas fa-envelope"></i> hydrosense.id@gmail.com</span>
-        </div>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-x-twitter"></i></a>
-        </div>
-    </div>
-
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="logo">
+        <a href="#" class="logo">
             <!-- 1. Logo -->
             <img src="logo-placeholder.png" alt="HydroSense Logo">
-        </div>
+            <span class="brand-name">HydroSense</span>
+        </a>
         <div class="nav-links">
-            <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
             <a href="#">Home</a>
             <a href="#products">Our Products</a>
+            <!-- Ikon Keranjang -->
+            <div class="cart-icon-wrapper" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge" id="cart-count">0</span>
+            </div>
         </div>
     </nav>
 
@@ -260,10 +378,10 @@
                 <div class="card-info">
                     <div class="price-row">
                         <h3>BASIC</h3>
-                        <span class="price">Rp. 3.000.000</span>
+                        <span class="price">Rp 3.000.000</span>
                     </div>
                     <p>Smart monitoring water filter</p>
-                    <button class="btn btn-cart" onclick="addToCart('BASIC', '3.000.000')">Add to cart</button>
+                    <button class="btn btn-cart" onclick="addToCart('BASIC', 3000000)">Add to cart</button>
                 </div>
             </div>
 
@@ -274,10 +392,10 @@
                 <div class="card-info">
                     <div class="price-row">
                         <h3>PRO</h3>
-                        <span class="price">Rp. 5.500.000</span>
+                        <span class="price">Rp 5.500.000</span>
                     </div>
                     <p>Smart monitoring water filter</p>
-                    <button class="btn btn-cart" onclick="addToCart('PRO', '5.500.000')">Add to cart</button>
+                    <button class="btn btn-cart" onclick="addToCart('PRO', 5500000)">Add to cart</button>
                 </div>
             </div>
 
@@ -288,10 +406,10 @@
                 <div class="card-info">
                     <div class="price-row">
                         <h3>ULTRA</h3>
-                        <span class="price">Rp. 6.000.000</span>
+                        <span class="price">Rp 6.000.000</span>
                     </div>
                     <p>Smart monitoring water filter</p>
-                    <button class="btn btn-cart" onclick="addToCart('ULTRA', '6.000.000')">Add to cart</button>
+                    <button class="btn btn-cart" onclick="addToCart('ULTRA', 6000000)">Add to cart</button>
                 </div>
             </div>
         </div>
@@ -299,39 +417,159 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 HydroSense. All Rights Reserved.</p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>HydroSense</h2>
+                <p>Membawa inovasi filter air pintar untuk keluarga modern. Pantau kualitas air secara real-time demi kesehatan keluarga Anda.</p>
+            </div>
+            <div class="footer-contact">
+                <h3>Hubungi Kami</h3>
+                <p><i class="fas fa-phone-alt"></i> (+62) 81230458233</p>
+                <p><i class="fas fa-envelope"></i> hydrosense.id@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Surabaya, East Java, Indonesia</p>
+            </div>
+            <div class="footer-social">
+                <h3>Ikuti Kami</h3>
+                <div class="social-icons-footer">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HydroSense. All Rights Reserved.</p>
+        </div>
     </footer>
 
-    <!-- Script Keranjang -->
+    <!-- Komponen Cart Drawer / Modal -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h2>Keranjang Anda</h2>
+            <span class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></span>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <p class="empty-cart-msg">Keranjang Anda masih kosong.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">Rp 0</span>
+            </div>
+            <button class="btn btn-cart" style="border-radius: 10px;" onclick="checkout()">Lanjutkan ke Pembayaran</button>
+        </div>
+    </div>
+
+    <!-- Script Fungsionalitas -->
     <script>
-        function addToCart(productName, price) {
-            const message = `Produk ${productName} (Rp ${price}) berhasil ditambahkan ke keranjang!`;
+        // State Management Keranjang
+        let cart = [];
+
+        // Format angka ke format Rupiah
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID').format(angka);
+        }
+
+        // Fungsi Tambah ke Keranjang
+        function addToCart(name, price) {
+            cart.push({ id: Date.now(), name, price });
+            updateCartUI();
             
+            // Tampilkan Toast/Notifikasi sukses
+            showToast(`${name} berhasil ditambahkan!`);
+        }
+
+        // Fungsi Hapus dari Keranjang
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        // Fungsi Memperbarui Tampilan Keranjang
+        function updateCartUI() {
+            // Update Badge Count
+            document.getElementById('cart-count').textContent = cart.length;
+
+            const container = document.getElementById('cart-items-container');
+            const totalPriceEl = document.getElementById('cart-total-price');
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="empty-cart-msg">Keranjang Anda masih kosong.</p>';
+                totalPriceEl.textContent = 'Rp 0';
+                return;
+            }
+
+            // Render Item Keranjang
+            container.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                total += item.price;
+                const itemEl = document.createElement('div');
+                itemEl.className = 'cart-item';
+                itemEl.innerHTML = `
+                    <div>
+                        <h4>HydroSense ${item.name}</h4>
+                        <p>Rp ${formatRupiah(item.price)}</p>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
+                `;
+                container.appendChild(itemEl);
+            });
+
+            totalPriceEl.textContent = `Rp ${formatRupiah(total)}`;
+        }
+
+        // Fungsi Toggle Drawer Keranjang
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            drawer.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Fungsi Checkout Sederhana
+        function checkout() {
+            if (cart.length === 0) {
+                showToast("Keranjang kosong! Silakan pilih produk terlebih dahulu.");
+                return;
+            }
+            alert("Terima kasih! Fitur pembayaran akan segera tersedia. Total tagihan: Rp " + formatRupiah(cart.reduce((a,b) => a+b.price, 0)));
+        }
+
+        // Sistem Toast Notifikasi
+        function showToast(message) {
             const toast = document.createElement('div');
-            toast.textContent = message;
+            toast.innerHTML = `<i class="fas fa-check-circle" style="margin-right:8px; color:#10B981;"></i> ${message}`;
             toast.style.position = 'fixed';
-            toast.style.bottom = '30px';
-            toast.style.right = '30px';
-            toast.style.backgroundColor = '#0A192F';
-            toast.style.color = 'white';
+            toast.style.top = '20px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = '#FFFFFF';
+            toast.style.color = '#1E293B';
             toast.style.padding = '15px 25px';
-            toast.style.borderRadius = '10px';
-            toast.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
-            toast.style.zIndex = '1000';
-            toast.style.transition = 'opacity 0.3s ease';
+            toast.style.borderRadius = '50px';
+            toast.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
+            toast.style.fontWeight = '600';
+            toast.style.zIndex = '10000';
+            toast.style.transition = 'all 0.3s ease';
             
             document.body.appendChild(toast);
             
             setTimeout(() => {
                 toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, -20px)';
                 setTimeout(() => { document.body.removeChild(toast); }, 300);
             }, 3000);
         }
 
+        // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
             });
         });
     </script>
