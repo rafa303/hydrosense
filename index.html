@@ -16,7 +16,7 @@
         :root {
             --primary-dark: #0A192F; 
             --primary-blue: #0077B6; 
-            --bg-body: #F4F9FC; /* Dibuat sedikit berwarna agar glassmorphism terlihat */
+            --bg-body: #F4F9FC; 
             --bg-section: #E8F0F6;
             --text-dark: #1E293B;
             --text-gray: #64748B;
@@ -48,8 +48,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            background-color: rgba(255, 255, 255, 0.85); /* Transparan */
-            backdrop-filter: blur(12px); /* Efek Kaca */
+            background-color: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(12px); 
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -206,18 +206,47 @@
             background: rgba(255, 255, 255, 0.8);
         }
 
+        /* --- UPDATE: Clickable Product dengan Background Layering --- */
         .clickable-product {
             width: 100%; 
             height: 280px; 
-            object-fit: cover; /* Dirubah ke cover agar BG produk memenuhi kotak */
             border-radius: 20px; 
             margin-bottom: 25px; 
             cursor: pointer;
-            transition: transform 0.3s ease;
             background-color: #F8FAFC;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
         }
-        .clickable-product:hover {
-            transform: scale(1.03);
+        
+        .clickable-product img {
+            height: 85%; /* Menyesuaikan produk di atas background */
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); /* Biar produk pop-up dari background */
+            z-index: 2;
+        }
+
+        .clickable-product::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.2); /* Overlay tipis biar produk makin jelas */
+            z-index: 1;
+            transition: 0.3s;
+        }
+
+        .clickable-product:hover img {
+            transform: scale(1.1);
+        }
+        .clickable-product:hover::before {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .card-info { flex: 1; display: flex; flex-direction: column; padding: 0 5px; }
@@ -291,7 +320,7 @@
         .feature-box h3 { color: var(--primary-dark); margin-bottom: 15px; font-weight: 600; }
         .feature-box p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
 
-        /* --- Modal untuk Detail Produk --- */
+        /* --- UPDATE: Modal untuk Detail Produk (Bagi 2 Kolom) --- */
         .product-modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 25, 47, 0.8);
@@ -308,20 +337,53 @@
 
         .product-modal {
             background: #fff;
-            width: 100%; max-width: 500px;
+            width: 100%; 
+            max-width: 850px; /* Diperlebar */
             border-radius: 20px;
-            padding: 30px;
             position: relative;
             transform: translateY(20px);
             transition: 0.3s;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            display: flex; /* Layout 2 Kolom */
+            overflow: hidden;
         }
         .product-modal-overlay.active .product-modal { transform: translateY(0); }
+
+        /* Modal Kiri (Gambar) */
+        .modal-image-container {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 400px;
+        }
+        .modal-image-container::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.2); z-index: 1;
+        }
+        .modal-image-container img {
+            max-width: 90%;
+            max-height: 350px;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
+            z-index: 2;
+        }
+
+        /* Modal Kanan (Teks) */
+        .modal-text-content {
+            flex: 1;
+            padding: 40px 30px;
+            background: #fff;
+        }
 
         .close-modal {
             position: absolute; top: 20px; right: 20px;
             font-size: 1.5rem; color: var(--text-gray);
             cursor: pointer; transition: 0.3s;
+            z-index: 10;
         }
         .close-modal:hover { color: #E11D48; }
 
@@ -329,7 +391,7 @@
         .modal-body { color: var(--text-gray); line-height: 1.6; margin-top: 15px; }
         .modal-body ul { list-style: none; padding-left: 0; margin-top: 15px; }
         .modal-body ul li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; }
-        .modal-body ul li i { color: #10B981; margin-top: 4px; } /* Warna hijau check */
+        .modal-body ul li i { color: #10B981; margin-top: 4px; } 
 
         /* --- Cart Modal (Side Drawer) --- */
         .cart-overlay {
@@ -431,6 +493,12 @@
             .footer-content { text-align: center; }
             .footer-contact p { justify-content: center; }
             .social-icons-footer { justify-content: center; }
+            
+            /* Responsive Modal */
+            .product-modal { flex-direction: column; max-width: 500px; }
+            .modal-image-container { min-height: 250px; }
+            .modal-text-content { padding: 30px 20px; }
+            .modal-image-container img { max-height: 200px; }
         }
         @media (max-width: 768px) {
             .nav-links a:not(.cart-icon-wrapper) { display: none; } 
@@ -485,8 +553,10 @@
         <div class="product-grid">
             <!-- Card 1: BASIC -->
             <div class="product-card">
-                <!-- Gambar clickable yang memanggil modal details. Menggunakan BG yang disepakati -->
-                <img src="filter-basic.jpg" alt="Filter Basic" class="clickable-product" onclick="showProductDetails('BASIC')">
+                <!-- Wrapper dengan background kayu, didalamnya ada produk 3D melayang -->
+                <div class="clickable-product" style="background-image: url('filter-basic.jpg');" onclick="showProductDetails('BASIC', 'filter-basic.jpg')">
+                    <img src="hero-products-placeholder.png" alt="Filter Basic Unit">
+                </div>
                 <div class="card-info">
                     <div class="price-row">
                         <h3>BASIC</h3>
@@ -500,7 +570,10 @@
 
             <!-- Card 2: PRO -->
             <div class="product-card">
-                <img src="filter-pro.jpg" alt="Filter Pro" class="clickable-product" onclick="showProductDetails('PRO')">
+                <!-- Wrapper dengan background rumput, didalamnya ada produk 3D melayang -->
+                <div class="clickable-product" style="background-image: url('filter-pro.jpg');" onclick="showProductDetails('PRO', 'filter-pro.jpg')">
+                    <img src="hero-products-placeholder.png" alt="Filter Pro Unit">
+                </div>
                 <div class="card-info">
                     <div class="price-row">
                         <h3>PRO</h3>
@@ -514,7 +587,10 @@
 
             <!-- Card 3: ULTRA -->
             <div class="product-card">
-                <img src="filter-ultra.jpg" alt="Filter Ultra" class="clickable-product" onclick="showProductDetails('ULTRA')">
+                <!-- Wrapper dengan background ruangan, didalamnya ada produk 3D melayang -->
+                <div class="clickable-product" style="background-image: url('filter-ultra.jpg');" onclick="showProductDetails('ULTRA', 'filter-ultra.jpg')">
+                    <img src="hero-products-placeholder.png" alt="Filter Ultra Unit">
+                </div>
                 <div class="card-info">
                     <div class="price-row">
                         <h3>ULTRA</h3>
@@ -528,7 +604,7 @@
         </div>
     </section>
 
-    <!-- New Section: Fitur / Teknologi (Biar Lebih Rame) -->
+    <!-- New Section: Fitur / Teknologi -->
     <section class="features-section" id="features">
         <div class="section-title">
             <h2>Teknologi HydroSense</h2>
@@ -571,7 +647,6 @@
                 <div class="social-icons-footer">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <!-- Ikon X diganti menjadi ikon WhatsApp -->
                     <a href="#"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
@@ -581,13 +656,22 @@
         </div>
     </footer>
 
-    <!-- Komponen Modal Detail Produk -->
+    <!-- UPDATE: Komponen Modal Detail Produk (2 Kolom Layout) -->
     <div class="product-modal-overlay" id="product-modal-overlay" onclick="closeModal(event)">
         <div class="product-modal" id="product-modal">
             <span class="close-modal" onclick="closeModal(event)"><i class="fas fa-times"></i></span>
-            <div class="modal-title" id="modal-title">Detail Produk</div>
-            <div class="modal-body" id="modal-body">
-                <!-- Konten akan diisi oleh JavaScript -->
+            
+            <!-- Kolom Kiri: Gambar Produk + Background -->
+            <div class="modal-image-container" id="modal-image-container">
+                <img src="hero-products-placeholder.png" alt="HydroSense Unit">
+            </div>
+
+            <!-- Kolom Kanan: Teks Spesifikasi -->
+            <div class="modal-text-content">
+                <div class="modal-title" id="modal-title">Detail Produk</div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Konten akan diisi oleh JavaScript -->
+                </div>
             </div>
         </div>
     </div>
@@ -627,8 +711,8 @@
             'PRO': `
                 <p>Perlindungan ekstra dengan sensor air digital. Sangat cocok untuk keluarga yang mengutamakan kesehatan.</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>5-Stage Filtration (Termasuk penyaringan logam berat)</strong></li>
-                    <li><i class="fas fa-check-circle"></i> Notifikasi WhatsApp & Akses Aplikasi Mobile</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>5-Stage Filtration (Termasuk logam berat)</strong></li>
+                    <li><i class="fas fa-check-circle"></i> Notifikasi WhatsApp & Akses Aplikasi</li>
                     <li><i class="fas fa-check-circle"></i> <strong>Sensor TDS & pH Air Real-time</strong></li>
                     <li><i class="fas fa-check-circle"></i> Garansi Unit 2 Tahun</li>
                 </ul>
@@ -636,29 +720,31 @@
             'ULTRA': `
                 <p>Sistem filtrasi ultimate dan pintar. Menyediakan kemurnian air tertinggi dengan fitur IoT terlengkap.</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>7-Stage Filtration + Lampu Sinar UV (Membunuh bakteri/virus)</strong></li>
-                    <li><i class="fas fa-check-circle"></i> Dashboard Analitik Penggunaan Air Bulanan</li>
-                    <li><i class="fas fa-check-circle"></i> Sensor TDS, pH, dan Suhu Real-time</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>AI Predictive Maintenance (Prediksi kapan kotor/rusak)</strong></li>
+                    <li><i class="fas fa-check-circle"></i> <strong>7-Stage Filtration + Sinar UV</strong></li>
+                    <li><i class="fas fa-check-circle"></i> Dashboard Analitik Air Bulanan</li>
+                    <li><i class="fas fa-check-circle"></i> Sensor TDS, pH, & Suhu Real-time</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>AI Predictive Maintenance</strong></li>
                     <li><i class="fas fa-check-circle"></i> Garansi Unit 3 Tahun Prioritas</li>
                 </ul>
             `
         };
 
         // --- Fungsi Buka/Tutup Modal Produk ---
-        function showProductDetails(type) {
+        function showProductDetails(type, bgImage) {
             const overlay = document.getElementById('product-modal-overlay');
             const title = document.getElementById('modal-title');
             const body = document.getElementById('modal-body');
+            const imageContainer = document.getElementById('modal-image-container');
 
             title.textContent = `HydroSense ${type}`;
             body.innerHTML = productSpecs[type];
+            // Setel gambar background pada kontainer gambar modal di kolom kiri
+            imageContainer.style.backgroundImage = `url('${bgImage}')`;
 
             overlay.classList.add('active');
         }
 
         function closeModal(event) {
-            // Cegah agar modal tidak tertutup jika diklik di bagian putihnya
             if(event.target.id === 'product-modal-overlay' || event.target.closest('.close-modal')) {
                 document.getElementById('product-modal-overlay').classList.remove('active');
             }
