@@ -16,9 +16,8 @@
         :root {
             --primary-dark: #0A192F; 
             --primary-blue: #0077B6; 
-            --bg-body: #FFFFFF;
-            --bg-card: linear-gradient(180deg, #FFFFFF 0%, #E8F0F6 100%); 
-            --bg-section: #F8FAFC;
+            --bg-body: #F4F9FC; /* Dibuat sedikit berwarna agar glassmorphism terlihat */
+            --bg-section: #E8F0F6;
             --text-dark: #1E293B;
             --text-gray: #64748B;
             --text-light: #FFFFFF;
@@ -39,15 +38,20 @@
             background-color: var(--bg-body);
             color: var(--text-dark);
             overflow-x: hidden;
+            background-image: radial-gradient(circle at 10% 20%, rgba(0, 119, 182, 0.05) 0%, transparent 20%), 
+                              radial-gradient(circle at 90% 80%, rgba(10, 25, 47, 0.05) 0%, transparent 20%);
         }
 
-        /* --- Navbar --- */
+        /* --- Navbar (Glassmorphism) --- */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.85); /* Transparan */
+            backdrop-filter: blur(12px); /* Efek Kaca */
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
@@ -180,12 +184,15 @@
             margin: 0 auto;
         }
 
-        /* Product Card */
+        /* Product Card (Glassmorphism) */
         .product-card {
-            background: var(--bg-card);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             border-radius: 30px;
             padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
             text-align: left;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
@@ -193,21 +200,24 @@
             position: relative;
         }
 
-        .product-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .product-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+            background: rgba(255, 255, 255, 0.8);
+        }
 
         .clickable-product {
             width: 100%; 
             height: 280px; 
-            object-fit: contain; /* Diganti ke contain agar gambar HP + Filter terlihat utuh */
+            object-fit: cover; /* Dirubah ke cover agar BG produk memenuhi kotak */
             border-radius: 20px; 
             margin-bottom: 25px; 
             cursor: pointer;
             transition: transform 0.3s ease;
             background-color: #F8FAFC;
-            padding: 10px;
         }
         .clickable-product:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .card-info { flex: 1; display: flex; flex-direction: column; padding: 0 5px; }
@@ -239,7 +249,7 @@
 
         /* --- New Section: Features / Technology --- */
         .features-section {
-            background-color: var(--bg-section);
+            background-color: transparent;
             padding: 80px 5%;
             text-align: center;
         }
@@ -254,13 +264,16 @@
         }
 
         .feature-box {
-            background: #FFFFFF;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             padding: 40px 20px;
             border-radius: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.03);
             transition: 0.3s;
         }
-        .feature-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .feature-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); background: rgba(255, 255, 255, 0.9); }
 
         .feature-icon {
             width: 70px;
@@ -335,7 +348,9 @@
             top: 0; right: -400px;
             width: 100%; max-width: 400px;
             height: 100%;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             z-index: 1000;
             box-shadow: -5px 0 15px rgba(0,0,0,0.1);
             transition: right 0.4s ease;
@@ -359,7 +374,7 @@
         .cart-items { flex: 1; overflow-y: auto; margin-bottom: 20px; }
         .cart-item {
             display: flex; justify-content: space-between; align-items: center;
-            background: #F8FAFC; padding: 15px; border-radius: 10px; margin-bottom: 10px;
+            background: rgba(248, 250, 252, 0.8); padding: 15px; border-radius: 10px; margin-bottom: 10px;
         }
         .cart-item h4 { font-size: 1rem; color: var(--primary-dark); }
         .cart-item p { font-size: 0.9rem; color: var(--primary-blue); font-weight: 600; margin-top: 5px; }
@@ -470,8 +485,8 @@
         <div class="product-grid">
             <!-- Card 1: BASIC -->
             <div class="product-card">
-                <!-- Gambar clickable yang memanggil modal details -->
-                <img src="hero-products-placeholder.png" alt="Filter Basic" class="clickable-product" onclick="showProductDetails('BASIC')">
+                <!-- Gambar clickable yang memanggil modal details. Menggunakan BG yang disepakati -->
+                <img src="filter-basic.jpg" alt="Filter Basic" class="clickable-product" onclick="showProductDetails('BASIC')">
                 <div class="card-info">
                     <div class="price-row">
                         <h3>BASIC</h3>
@@ -485,7 +500,7 @@
 
             <!-- Card 2: PRO -->
             <div class="product-card">
-                <img src="hero-products-placeholder.png" alt="Filter Pro" class="clickable-product" onclick="showProductDetails('PRO')">
+                <img src="filter-pro.jpg" alt="Filter Pro" class="clickable-product" onclick="showProductDetails('PRO')">
                 <div class="card-info">
                     <div class="price-row">
                         <h3>PRO</h3>
@@ -499,7 +514,7 @@
 
             <!-- Card 3: ULTRA -->
             <div class="product-card">
-                <img src="hero-products-placeholder.png" alt="Filter Ultra" class="clickable-product" onclick="showProductDetails('ULTRA')">
+                <img src="filter-ultra.jpg" alt="Filter Ultra" class="clickable-product" onclick="showProductDetails('ULTRA')">
                 <div class="card-info">
                     <div class="price-row">
                         <h3>ULTRA</h3>
@@ -556,7 +571,8 @@
                 <div class="social-icons-footer">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <!-- Ikon X diganti menjadi ikon WhatsApp -->
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
