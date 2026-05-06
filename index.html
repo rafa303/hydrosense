@@ -273,10 +273,13 @@
             padding: 15px;
             border-radius: 30px;
             font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
         }
         .btn-cart:hover { background-color: var(--primary-blue); }
 
-        /* --- New Section: Features / Technology --- */
+        /* --- Section: Features / Technology --- */
         .features-section {
             background-color: transparent;
             padding: 80px 5%;
@@ -319,6 +322,59 @@
 
         .feature-box h3 { color: var(--primary-dark); margin-bottom: 15px; font-weight: 600; }
         .feature-box p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
+
+        /* --- New Section: Tentang Pembuat --- */
+        .creator-section {
+            padding: 80px 5%;
+            background-color: var(--bg-body);
+            text-align: center;
+            position: relative;
+        }
+        
+        .creator-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        .creator-text p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .creator-contacts {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .contact-badge:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 119, 182, 0.3);
+        }
 
         /* --- Modal untuk Detail Produk (2 Kolom Layout) --- */
         .product-modal-overlay {
@@ -374,10 +430,10 @@
 
         /* Modal Kanan (Teks) */
         .modal-text-content {
-            flex: 1.2; /* Diberi ruang sedikit lebih besar agar teks tidak terlalu sempit */
+            flex: 1.2; 
             padding: 40px 30px;
             background: #fff;
-            overflow-y: auto; /* Jika teks panjang, bisa di-scroll */
+            overflow-y: auto; 
             max-height: 80vh;
         }
 
@@ -440,9 +496,9 @@
             display: flex; justify-content: space-between; align-items: center;
             background: rgba(248, 250, 252, 0.8); padding: 15px; border-radius: 10px; margin-bottom: 10px;
         }
-        .cart-item h4 { font-size: 1rem; color: var(--primary-dark); }
-        .cart-item p { font-size: 0.9rem; color: var(--primary-blue); font-weight: 600; margin-top: 5px; }
-        .remove-item { color: #E11D48; cursor: pointer; background: none; border: none; font-size: 1rem; }
+        .cart-item h4 { font-size: 1rem; color: var(--primary-dark); margin-bottom: 4px; }
+        .cart-item p { font-size: 0.9rem; color: var(--primary-blue); font-weight: 600; margin-top: 0; }
+        .remove-item { color: #E11D48; cursor: pointer; background: none; border: none; font-size: 1.2rem; }
 
         .cart-footer { padding-top: 20px; border-top: 1px solid #E2E8F0; }
         .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 20px; }
@@ -501,6 +557,9 @@
             .modal-image-container { min-height: 250px; }
             .modal-text-content { padding: 30px 20px; }
             .modal-image-container img { max-height: 200px; }
+            
+            .creator-content { padding: 30px; }
+            .creator-contacts { justify-content: center; }
         }
         @media (max-width: 768px) {
             .nav-links a:not(.cart-icon-wrapper) { display: none; } 
@@ -520,6 +579,7 @@
             <a href="#">Home</a>
             <a href="#products">Produk</a>
             <a href="#features">Teknologi</a>
+            <a href="#creator">Pembuat</a>
             <!-- Ikon Keranjang -->
             <div class="cart-icon-wrapper" onclick="toggleCart()">
                 <i class="fas fa-shopping-cart"></i>
@@ -539,7 +599,7 @@
             </div>
         </div>
         <div class="hero-image">
-            <img src="hero-products-placeholder.png" alt="HydroSense Devices & Alert">
+            <img src="hero-products.png" alt="HydroSense Devices & Alert">
         </div>
     </header>
 
@@ -554,7 +614,7 @@
             <!-- Card 1: BASIC -->
             <div class="product-card">
                 <div class="clickable-product" style="background-image: url('filter-basic.jpg');" onclick="showProductDetails('BASIC', 'filter-basic.jpg')">
-                    <img src="hero-products-placeholder.png" alt="Filter Basic Unit">
+                    <img src="hero-products.png" alt="Filter Basic Unit">
                 </div>
                 <div class="card-info">
                     <div class="price-row">
@@ -570,7 +630,7 @@
             <!-- Card 2: PRO -->
             <div class="product-card">
                 <div class="clickable-product" style="background-image: url('filter-pro.jpg');" onclick="showProductDetails('PRO', 'filter-pro.jpg')">
-                    <img src="hero-products-placeholder.png" alt="Filter Pro Unit">
+                    <img src="hero-products.png" alt="Filter Pro Unit">
                 </div>
                 <div class="card-info">
                     <div class="price-row">
@@ -586,7 +646,7 @@
             <!-- Card 3: ULTRA -->
             <div class="product-card">
                 <div class="clickable-product" style="background-image: url('filter-ultra.jpg');" onclick="showProductDetails('ULTRA', 'filter-ultra.jpg')">
-                    <img src="hero-products-placeholder.png" alt="Filter Ultra Unit">
+                    <img src="hero-products.png" alt="Filter Ultra Unit">
                 </div>
                 <div class="card-info">
                     <div class="price-row">
@@ -626,6 +686,25 @@
         </div>
     </section>
 
+    <!-- Section: Tentang Pembuat -->
+    <section class="creator-section" id="creator">
+        <div class="section-title">
+            <h2>Tentang Pembuat</h2>
+            <p>Kisah dan latar belakang lahirnya inovasi HydroSense.</p>
+        </div>
+        <div class="creator-content">
+            <div class="creator-text">
+                <p>HydroSense lahir dari kesadaran akan pentingnya air bersih yang benar-benar aman, bukan hanya sekadar terlihat jernih. Berawal dari kepedulian terhadap kualitas air di lingkungan sekitar dan pesantren, kami berinovasi untuk menciptakan sistem filtrasi yang cerdas, efisien, dan mudah dipantau.</p>
+                <p>Sistem ini tidak hanya menyaring kotoran fisik, tetapi juga kontaminan tak kasat mata seperti mikroplastik dan logam berat. Dengan mengintegrasikan teknologi IoT, kami ingin memberikan ketenangan pikiran bagi setiap keluarga melalui pemantauan *real-time* dan notifikasi pintar yang langsung dikirim ke perangkat Anda.</p>
+                
+                <div class="creator-contacts">
+                    <a href="https://wa.me/6281230458233" target="_blank" class="contact-badge"><i class="fab fa-whatsapp"></i> +62 812-3045-8233</a>
+                    <a href="https://instagram.com/aqlalfrsi" target="_blank" class="contact-badge"><i class="fab fa-instagram"></i> @aqlalfrsi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -642,9 +721,8 @@
             <div class="footer-social">
                 <h3>Ikuti Kami</h3>
                 <div class="social-icons-footer">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/aqlalfrsi" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/6281230458233" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
@@ -660,7 +738,7 @@
             
             <!-- Kolom Kiri: Gambar Produk + Background -->
             <div class="modal-image-container" id="modal-image-container">
-                <img src="hero-products-placeholder.png" alt="HydroSense Unit">
+                <img src="hero-products.png" alt="HydroSense Unit">
             </div>
 
             <!-- Kolom Kanan: Teks Spesifikasi -->
@@ -688,13 +766,13 @@
                 <span>Total:</span>
                 <span id="cart-total-price">Rp 0</span>
             </div>
-            <button class="btn btn-cart" style="border-radius: 10px;" onclick="checkout()">Lanjutkan ke Pembayaran</button>
+            <button class="btn btn-cart" style="border-radius: 10px;" onclick="checkoutWhatsApp()">Lanjutkan ke Pembayaran</button>
         </div>
     </div>
 
     <!-- Script Fungsionalitas -->
     <script>
-        // --- Data Perbedaan Spesifikasi Produk (Telah Diupdate) ---
+        // --- Data Perbedaan Spesifikasi Produk ---
         const productSpecs = {
             'BASIC': `
                 <ul>
@@ -800,12 +878,32 @@
             document.getElementById('cart-overlay').classList.toggle('active');
         }
 
-        function checkout() {
+        // --- Checkout & WhatsApp Integration ---
+        function checkoutWhatsApp() {
             if (cart.length === 0) {
                 showToast("Keranjang kosong! Silakan pilih produk terlebih dahulu.");
                 return;
             }
-            alert("Terima kasih! Fitur pembayaran akan segera tersedia. Total tagihan: Rp " + formatRupiah(cart.reduce((a,b) => a+b.price, 0)));
+
+            // Menyusun format pesan WhatsApp
+            let message = "Halo HydroSense! Saya ingin memesan:\n\n";
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                message += `${index + 1}. HydroSense ${item.name} - Rp ${formatRupiah(item.price)}\n`;
+                total += item.price;
+            });
+            
+            message += `\n*Total Tagihan: Rp ${formatRupiah(total)}*\n\nMohon informasi lebih lanjut untuk pembayarannya. Terima kasih!`;
+            
+            // Encode teks untuk URL
+            const encodedMessage = encodeURIComponent(message);
+            // Nomor WA pembuat
+            const waNumber = "6281230458233";
+            
+            // Buka tab baru menuju WhatsApp
+            const waUrl = `https://wa.me/${waNumber}?text=${encodedMessage}`;
+            window.open(waUrl, '_blank');
         }
 
         // --- Sistem Toast Notifikasi ---
