@@ -206,7 +206,7 @@
             background: rgba(255, 255, 255, 0.8);
         }
 
-        /* --- UPDATE: Clickable Product dengan Background Layering --- */
+        /* --- Clickable Product dengan Background Layering --- */
         .clickable-product {
             width: 100%; 
             height: 280px; 
@@ -225,11 +225,11 @@
         }
         
         .clickable-product img {
-            height: 85%; /* Menyesuaikan produk di atas background */
+            height: 85%; 
             width: auto;
             object-fit: contain;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); /* Biar produk pop-up dari background */
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); 
             z-index: 2;
         }
 
@@ -237,7 +237,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.2); /* Overlay tipis biar produk makin jelas */
+            background: rgba(255, 255, 255, 0.2); 
             z-index: 1;
             transition: 0.3s;
         }
@@ -320,7 +320,7 @@
         .feature-box h3 { color: var(--primary-dark); margin-bottom: 15px; font-weight: 600; }
         .feature-box p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
 
-        /* --- UPDATE: Modal untuk Detail Produk (Bagi 2 Kolom) --- */
+        /* --- Modal untuk Detail Produk (2 Kolom Layout) --- */
         .product-modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(10, 25, 47, 0.8);
@@ -338,13 +338,13 @@
         .product-modal {
             background: #fff;
             width: 100%; 
-            max-width: 850px; /* Diperlebar */
+            max-width: 850px; 
             border-radius: 20px;
             position: relative;
             transform: translateY(20px);
             transition: 0.3s;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            display: flex; /* Layout 2 Kolom */
+            display: flex; 
             overflow: hidden;
         }
         .product-modal-overlay.active .product-modal { transform: translateY(0); }
@@ -374,9 +374,11 @@
 
         /* Modal Kanan (Teks) */
         .modal-text-content {
-            flex: 1;
+            flex: 1.2; /* Diberi ruang sedikit lebih besar agar teks tidak terlalu sempit */
             padding: 40px 30px;
             background: #fff;
+            overflow-y: auto; /* Jika teks panjang, bisa di-scroll */
+            max-height: 80vh;
         }
 
         .close-modal {
@@ -390,8 +392,8 @@
         .modal-title { font-size: 1.8rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; border-bottom: 2px solid var(--primary-blue); padding-bottom: 10px; display: inline-block; }
         .modal-body { color: var(--text-gray); line-height: 1.6; margin-top: 15px; }
         .modal-body ul { list-style: none; padding-left: 0; margin-top: 15px; }
-        .modal-body ul li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; }
-        .modal-body ul li i { color: #10B981; margin-top: 4px; } 
+        .modal-body ul li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; }
+        .modal-body ul li i { color: #10B981; margin-top: 4px; flex-shrink: 0; } 
 
         /* --- Cart Modal (Side Drawer) --- */
         .cart-overlay {
@@ -511,7 +513,6 @@
     <!-- Navbar -->
     <nav class="navbar">
         <a href="#" class="logo">
-            <!-- 1. Logo -->
             <img src="logo-placeholder.png" alt="HydroSense Logo">
             <span class="brand-name">HydroSense</span>
         </a>
@@ -538,7 +539,6 @@
             </div>
         </div>
         <div class="hero-image">
-            <!-- 2. Aset Hero Section -->
             <img src="hero-products-placeholder.png" alt="HydroSense Devices & Alert">
         </div>
     </header>
@@ -553,7 +553,6 @@
         <div class="product-grid">
             <!-- Card 1: BASIC -->
             <div class="product-card">
-                <!-- Wrapper dengan background kayu, didalamnya ada produk 3D melayang -->
                 <div class="clickable-product" style="background-image: url('filter-basic.jpg');" onclick="showProductDetails('BASIC', 'filter-basic.jpg')">
                     <img src="hero-products-placeholder.png" alt="Filter Basic Unit">
                 </div>
@@ -570,7 +569,6 @@
 
             <!-- Card 2: PRO -->
             <div class="product-card">
-                <!-- Wrapper dengan background rumput, didalamnya ada produk 3D melayang -->
                 <div class="clickable-product" style="background-image: url('filter-pro.jpg');" onclick="showProductDetails('PRO', 'filter-pro.jpg')">
                     <img src="hero-products-placeholder.png" alt="Filter Pro Unit">
                 </div>
@@ -587,7 +585,6 @@
 
             <!-- Card 3: ULTRA -->
             <div class="product-card">
-                <!-- Wrapper dengan background ruangan, didalamnya ada produk 3D melayang -->
                 <div class="clickable-product" style="background-image: url('filter-ultra.jpg');" onclick="showProductDetails('ULTRA', 'filter-ultra.jpg')">
                     <img src="hero-products-placeholder.png" alt="Filter Ultra Unit">
                 </div>
@@ -604,7 +601,7 @@
         </div>
     </section>
 
-    <!-- New Section: Fitur / Teknologi -->
+    <!-- Section: Fitur / Teknologi -->
     <section class="features-section" id="features">
         <div class="section-title">
             <h2>Teknologi HydroSense</h2>
@@ -656,7 +653,7 @@
         </div>
     </footer>
 
-    <!-- UPDATE: Komponen Modal Detail Produk (2 Kolom Layout) -->
+    <!-- Komponen Modal Detail Produk (2 Kolom Layout) -->
     <div class="product-modal-overlay" id="product-modal-overlay" onclick="closeModal(event)">
         <div class="product-modal" id="product-modal">
             <span class="close-modal" onclick="closeModal(event)"><i class="fas fa-times"></i></span>
@@ -697,34 +694,32 @@
 
     <!-- Script Fungsionalitas -->
     <script>
-        // --- Data Perbedaan Spesifikasi Produk ---
+        // --- Data Perbedaan Spesifikasi Produk (Telah Diupdate) ---
         const productSpecs = {
             'BASIC': `
-                <p>Pilihan tepat untuk penyaringan dasar sehari-hari dengan integrasi notifikasi standar.</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> 3-Stage Filtration (Menyaring sedimen, klorin, bau)</li>
-                    <li><i class="fas fa-check-circle"></i> Notifikasi Ganti Filter via WhatsApp</li>
-                    <li><i class="fas fa-check-circle"></i> Indikator Umur Filter LED</li>
-                    <li><i class="fas fa-check-circle"></i> Garansi Unit 1 Tahun</li>
+                    <li><i class="fas fa-check-circle"></i> 2 - Stage Filtration (menyaring sedimen ringan, karat, mengatasi air kuning terutama warna & bau)</li>
+                    <li><i class="fas fa-check-circle"></i> Notifikasi Ganti Filter, Sensor TDS & Ph air Real time Via WhatsApp</li>
+                    <li><i class="fas fa-check-circle"></i> 1X Filtrasi Anti Mikroplastik</li>
+                    <li><i class="fas fa-check-circle"></i> Garansi Resmi Unit 1 tahun</li>
                 </ul>
             `,
             'PRO': `
-                <p>Perlindungan ekstra dengan sensor air digital. Sangat cocok untuk keluarga yang mengutamakan kesehatan.</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>5-Stage Filtration (Termasuk logam berat)</strong></li>
-                    <li><i class="fas fa-check-circle"></i> Notifikasi WhatsApp & Akses Aplikasi</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Sensor TDS & pH Air Real-time</strong></li>
-                    <li><i class="fas fa-check-circle"></i> Garansi Unit 2 Tahun</li>
+                    <li><i class="fas fa-check-circle"></i> 3 - stage filtration (menyaring sedimen sedang seperti pasir, bau fe yang tinggi dan kekeruhan air yang parah)</li>
+                    <li><i class="fas fa-check-circle"></i> Notifikasi Ganti Filter, Sensor TDS & Ph air Real time Via WhatsApp</li>
+                    <li><i class="fas fa-check-circle"></i> 2x Filtrasi Anti Mikroplastik</li>
+                    <li><i class="fas fa-check-circle"></i> Garansi Resmi Unit 1 Tahun</li>
+                    <li><i class="fas fa-check-circle"></i> Perlindungan Double Unit Instalasi rumah tangga</li>
                 </ul>
             `,
             'ULTRA': `
-                <p>Sistem filtrasi ultimate dan pintar. Menyediakan kemurnian air tertinggi dengan fitur IoT terlengkap.</p>
                 <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>7-Stage Filtration + Sinar UV</strong></li>
-                    <li><i class="fas fa-check-circle"></i> Dashboard Analitik Air Bulanan</li>
-                    <li><i class="fas fa-check-circle"></i> Sensor TDS, pH, & Suhu Real-time</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>AI Predictive Maintenance</strong></li>
-                    <li><i class="fas fa-check-circle"></i> Garansi Unit 3 Tahun Prioritas</li>
+                    <li><i class="fas fa-check-circle"></i> 4 - Stage Multi Filtration (sistem penyaringan sedimen tinggi seperti lumpur, bau fe yang menyengat, kekeruhan atau kekuningan air yang parah, menangkal dan menyaring segala macam bau)</li>
+                    <li><i class="fas fa-check-circle"></i> Notifikasi Ganti Filter, Sensor TDS & Ph air Real time Via WhatsApp</li>
+                    <li><i class="fas fa-check-circle"></i> 3X filtrasi anti Mikroplastik dan sedimen tinggi</li>
+                    <li><i class="fas fa-check-circle"></i> Garansi Resmi Unit 2 tahun</li>
+                    <li><i class="fas fa-check-circle"></i> Perlindungan Ultra Unit Instalasi rumah tangga</li>
                 </ul>
             `
         };
